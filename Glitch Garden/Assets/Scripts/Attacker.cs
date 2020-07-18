@@ -11,6 +11,19 @@ public class Attacker : MonoBehaviour
     GameObject currentTarget;
     Animator animator;
 
+    private void Awake()
+    {
+        FindObjectOfType<LevelController>().AttackerSpawned();
+    }
+
+    private void OnDestroy()
+    {
+        LevelController levelController = FindObjectOfType<LevelController>();
+        if (levelController)
+        {
+            levelController.AttackerKilled();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
